@@ -4,6 +4,7 @@ from setup.api import bp
 from setup import db
 from setup.api.errors import bad_request, error_response
 from setup.api.auth import token_auth
+from setup.api.tokens import save_file
 
 @bp.route('/user/<int:id>', methods=['GET'])
 @token_auth.login_required
@@ -178,6 +179,12 @@ def get_donations(id):
     donations = [each.to_dict() for each in orph.donations]
     result = {'donations': donations, 'orphanage_name': orph.name}
     return jsonify(result)
+
+@bp.post('/image_upload')
+def image_upload():
+    _file = request.files['file']
+    filepath = save_file(_file)
+    return jsonify({'filepath': filepath})
 
 
     
