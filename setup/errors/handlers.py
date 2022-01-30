@@ -11,6 +11,10 @@ def wants_json_response():
 def not_found_error(error):
     return api_error_response(404)
 
+@bp.app_errorhandler(413)
+def too_large_error(error):
+    return api_error_response(413, "Image should not be larger than 500 KB")
+
 @bp.app_errorhandler(500)
 def internal_error(error):
     db.session.rollback()

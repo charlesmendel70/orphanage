@@ -48,10 +48,10 @@ def update_user(id):
     data = request.get_json() or {}
     if 'username' in data and data['username'] != user.username and \
         User.query.filter_by(username=data['username']).first():
-        return bad_request('Please use a different username')
+        return bad_request('Please use a different username.Username already taken')
     if 'email' in data and data['email'] != user.email and \
         User.query.filter_by(email=data['email']).first():
-        return bad_request('Please use a different email address')
+        return bad_request('Please use a different email address. Email address already taken')
     user.from_dict(data)
     db.session.commit()
     return jsonify(user.to_dict())
@@ -107,9 +107,11 @@ def get_orphanage(id):
 def update_orphanage(id):
     orph = Orphanage.query.get_or_404(id)
     data = request.get_json() or {}
-    if Orphanage.query.filter_by(name=data['name']).first():
+    if 'name' in data and data['name'] != orph.name and \
+        Orphanage.query.filter_by(name=data['name']).first():
         return bad_request('Please use a different Orphanage name')
-    if Orphanage.query.filter_by(email=data['email']).first():
+    if 'email' in data and data['email'] != orph.email and \
+        Orphanage.query.filter_by(email=data['email']).first():
         return bad_request('Please use a different email address')
     if not token_auth.current_user().is_admin: # if the user is not an admin
         return error_response(401, 'Admin status is required to update an orphanage')
@@ -184,7 +186,11 @@ def get_donations(id):
 def image_upload():
     _file = request.files['file']
     filepath = save_file(_file)
-    return jsonify({'filepath': filepath})
+    if filepath == "Not allowed":
+        return error_response(415, "File is not an image of type 'png','jpg','jpeg' or 'gif'.")
+    response = jsonify({'filepath': filepath})
+    response.status_code = 201
+    return response
 
 
     

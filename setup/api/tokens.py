@@ -25,12 +25,19 @@ def revoke_token():
     db.session.commit()
     return '', 204
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in current_app.config['ALLOWED_EXTENSIONS']
+
 def save_file(file_data):
     f=file_data
+    # Check if file is allowed, if not, return 'not allowed'
+    if not allowed_file(f.filename):
+        return "Not allowed"
     unique = str(uuid.uuid4())
     file_ext = os.path.splitext(f.filename)[1]
+    # Use uuid with file extension to save
     filename = unique + file_ext
-    # Use uuid with filename to save
     target = current_app.config['UPLOAD_FOLDER']
     # There's an error with upload folder abs path
     if not os.path.isdir(target):

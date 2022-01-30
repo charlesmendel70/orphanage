@@ -21,5 +21,8 @@ class Config(object):
     LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
     # Config variable for pagination
     POSTS_PER_PAGE = 20
+    UPLOAD_FOLDER = os.environ.get("UPLOAD_FOLDER")
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg','gif'}
+    MAX_CONTENT_LENGTH = 500 * 1024 #500 KB
 
 config = Config()

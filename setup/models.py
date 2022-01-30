@@ -125,7 +125,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
     email = db.Column(db.String(120), index = True, unique = True)
     students = db.Column(db.Integer)
     phone_no = db.Column(db.String(20))
-    location = db.Column(db.Text)
+    location = db.Column(db.JSON)
     activities = db.Column(db.Text)
     paypal_info = db.Column(db.JSON)
     social_media_links = db.Column(db.JSON)
@@ -140,9 +140,9 @@ class Orphanage(db.Model, PaginatedAPIMixin):
     def to_dict(self):
         data = {
             'id': self.id,
-            'orphanage_name': self.name,
+            'name': self.name,
             'email': self.email,
-            'no_of_students': self.students,
+            'students': self.students,
             'phone_no': self.phone_no,
             'location': self.location,
             'activities': self.activities,

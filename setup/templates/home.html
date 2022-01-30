@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <input type="file" name="file" id="file_upload">
+    <button id="submit_file">Submit</button>
+
     <h2>This APIs routes are as follows--(Note that all routes are prefixed with '/api')</h2>
     <h4>Currently, the user part of the api is protected and needs auth while the messages routes can be freely accessed</h4>
     <h4>Some of the orphanages & donations routes are token protected while others are not</h4>
@@ -71,9 +74,10 @@
         <ul style="font-size:large;">
             <li>The POST,PUT & DELETE methods for the orphanage routes require token and admin_status('is_admin' = True)</li>
             <li>The donations(GET method)- '/orphanage_donations/{id}' also now requires a token and admin status</li>
-            
+            <li>Upload image at '/image_upload'. This returns the filepath e.g 'static/images/{filename}'. Add this to the base url</li>
         </ul>
     </div>
+    <script src="{{url_for('static', filename='js/files.js')}}"></script>
     
 </body>
 </html>
