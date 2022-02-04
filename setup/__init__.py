@@ -6,7 +6,6 @@ from flask_mail import Mail
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
-from flask_cors import CORS
 
 
 # Initialize the SQLAlchemy and Migrate objects
@@ -14,7 +13,6 @@ db = SQLAlchemy()
 migrate = Migrate()
 # Init. the  Mail object
 mail = Mail()
-cors = CORS()
 
 
 def create_app(config_class=Config):
@@ -24,7 +22,6 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db, compare_type=True, render_as_batch=True)
     mail.init_app(app)
-    cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
 
     from setup.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
