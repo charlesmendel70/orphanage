@@ -78,7 +78,7 @@ def get_orphanages():
 @token_auth.login_required
 def create_orphanage():
     data = request.get_json() or {}
-    columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links', 'story', 'money_uses', 'photos_links','bank_info']
+    columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links', 'story', 'money_uses', 'photos_links','bank_info','actId','acttype']
     for field in columns:
         if field not in data:
             return bad_request('Must include all required fields')
@@ -152,13 +152,15 @@ def get_messages():
     return jsonify(messages)
 
 @bp.post('/donations')
+@token_auth.login_required
 def add_donation():
     data = request.get_json() or {}
     for field in ['username', 'orphanage_name', 'amount']:
         if field not in data:
             return bad_request('Must include all required fields')
     # If orphanage or user not found, return a bad request
-    user = User.query.filter_by(username=data['username']).first()
+    user = token_auth.current_user()
+    # User.query.filter_by(username=data['username']).first() or
     orph = Orphanage.query.filter_by(name=data['orphanage_name']).first()
     if not user:
         return bad_request('User not found')

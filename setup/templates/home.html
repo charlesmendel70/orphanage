@@ -30,13 +30,14 @@
     <h3>Orphanage details</h3>
     <p>'/orphanages' (GET Method) => for getting all orphanages' details</p>
     <p>'/orphanages' (POST Method) => for creating an orphanage <br>
-    <strong>Body takes 'name', 'email', 'students', 'phone_no', 'location', 'activities','paypal_info','social_media_links', 'story', 'money_uses', 'photos_links','bank_info'(All required)</strong><br>
+    <strong>Body takes 'name', 'email', 'students', 'phone_no', 'location', 'activities','paypal_info','social_media_links', 'story', 'money_uses', 'photos_links','bank_info','acttype' and 'actId'(All required)</strong><br>
     <ul style="color: red;">
         <li>'name' and 'email' are strings</li>
         <li>'students' should be of 'number type' while 'phone_no' is a string of max length 20</li>
         <li>'location' and 'activities' are of 'long_text type'. Their types can be content written as plain text, html tags,etc</li>
         <li>'paypal_info', 'social_media_links' & 'photos_links' should be JSON objects not string. </li>
         <li>'story','money_uses' & 'bank_info' are also of 'long_text' type</li>
+        <li>'acttype' and 'actId' are of type string. 'acttype' has a max length of 6(stripe/paypal) while 'actId' has a max length of 120 </li>
         
     </ul>
     </p>
@@ -55,8 +56,8 @@
     <h3>Donation details</h3>
     <p>'/donations'(POST method) => for adding successful donations</p>
     <p><strong>Body takes 'username','amount' & 'orphanage_name'(All required)</strong></p>
+    <p style="color: red;">It requires the token of the user who made a donation.Therefore, there are no anonymous donations</p>
     <p>'amount' is a number that should be rounded to 2 decimal places</p>
-    <p style="color: red;">I will create a user with username 'Anonymous' to add donation info for non-registered users. You can pass 'Anonymous' as the 'username' in body for such usersx</p>
     <p>'/orphanage_donations/{id}'(GET method) to get an orphanage's donations. It returns the donations with donation time</p>
 
 
@@ -72,9 +73,8 @@
     <div>
         Added 
         <ul style="font-size:large;">
-            <li>The POST,PUT & DELETE methods for the orphanage routes require token and admin_status('is_admin' = True)</li>
-            <li>The donations(GET method)- '/orphanage_donations/{id}' also now requires a token and admin status</li>
-            <li>The orphanage POST & PUT methods now take parameter 'bank_info' of type 'long_text'</li>
+            <li>The donations(POST method)- '/donations' also now requires a token of the user who made a donation</li>
+            <li>'acttype' and 'actId' (both of type string) to the orphanage class</li>
         </ul>
     </div>
     <script src="{{url_for('static', filename='js/files.js')}}"></script>
