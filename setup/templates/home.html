@@ -57,6 +57,12 @@
     <p style="color: red;">It requires the token of the user who made a donation.Therefore, there are no anonymous donations</p>
     <p>'amount' is a number that should be rounded to 2 decimal places</p>
     <p>'/orphanage_donations/{id}'(GET method) to get an orphanage's donations. It returns the donations with donation time</p>
+    <p style="color: red;">The donations are returned in the format {
+        'donation_time': (python datetime object) ,
+        'amount': (float),
+        'donor': (string),
+        'recipient_orphanage': (string)
+    }</p>
 
 
     <h2>Further notes</h2>
@@ -72,7 +78,7 @@
         Added 
         <ul style="font-size:large;">
             <li>The donations(POST method)- '/donations' also now requires a token of the user who made a donation</li>
-            <li>'acttype' and 'actId' (both of type string) to the orphanage class</li>
+            <li>Note the donations(GET method) and the data type returned</li>
         </ul>
     </div>
     <script src="{{url_for('static', filename='js/files.js')}}"></script>

@@ -209,7 +209,7 @@ class Donation(db.Model):
     def to_dict(self):
         data = {
             'donation_time': self.donation_time,
-            'amount': self.amount,
+            'amount': float(self.amount),
             'donor': self.donor.username,
             'recipient_orphanage': self.recipient.name
         }
