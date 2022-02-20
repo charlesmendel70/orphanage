@@ -45,6 +45,7 @@ class User(PaginatedAPIMixin, db.Model):
     password_hash = db.Column(db.String(128))
     last_seen = db.Column(db.DateTime, default = datetime.utcnow)
     is_admin = db.Column(db.Boolean, default=False)
+    phone_no = db.Column(db.String(20))
     
     # Attrs. for API tokens
     token = db.Column(db.String(32), index=True, unique=True)
@@ -87,6 +88,7 @@ class User(PaginatedAPIMixin, db.Model):
             'last_seen': self.last_seen.isoformat() + 'Z',
             'email': self.email,
             'is_admin': self.is_admin,
+            'phone_no': self.phone_no,
             '_links': {
                 'self': url_for('api.get_user', id=self.id),
             }
@@ -94,7 +96,7 @@ class User(PaginatedAPIMixin, db.Model):
         return data
     
     def from_dict(self, data):
-        for field in ['username', 'email']:
+        for field in ['username', 'email', 'phone_no']:
             if field in data:
                 setattr(self, field, data[field])
         if 'password' in data:

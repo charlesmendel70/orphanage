@@ -18,11 +18,11 @@
     <h3>User stuff</h3>
     <p>'/users' (GET Method) => for getting all users (you can send 'page' & 'per_page' for pagination)</p>
     <p>'/users' (POST Method) => for creating a user (doesn't need token) <br/>
-    <strong>Body takes 'username','email' and 'password' (All required)</strong></p>
+    <strong>Body takes 'username','email','phone_no' and 'password' (All required)</strong></p>
     
     <p> '/user/{id}' (GET method) => for getting a user's details</p>
     <p>'/user/{id}' (PUT method) => for updating a user's details <br/>
-        <strong>Body takes 'username','email' and 'password' (Each optional)</strong></p>
+        <strong>Body takes 'username','email','phone_no' and 'password' (Each optional)</strong></p>
     <p>'/user/{id}' (DELETE method) => for deleting a user from the db</p>
     
     <h3>Orphanage details</h3>
@@ -77,8 +77,8 @@
     <div>
         Added 
         <ul style="font-size:large;">
-            <li>The donations(POST method)- '/donations' also now requires a token of the user who made a donation</li>
             <li>Note the donations(GET method) and the data type returned</li>
+            <li>'phone_no' to the Users routes</li>
         </ul>
     </div>
     <script src="{{url_for('static', filename='js/files.js')}}"></script>
