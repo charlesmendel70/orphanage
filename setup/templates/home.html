@@ -33,7 +33,8 @@
         <li>'name' and 'email' are strings</li>
         <li>'students' should be of 'number type' while 'phone_no' is a string of max length 20</li>
         <li>'location' and 'activities' are of 'long_text type'. Their types can be content written as plain text, html tags,etc</li>
-        <li>'paypal_info', 'social_media_links' & 'photos_links' should be JSON objects not string. </li>
+        <li>'paypal_info' & 'social_media_links' should be JSON objects not string. </li>
+        <li> 'photos_links' should be an array</li>
         <li>'story','money_uses' & 'bank_info' are also of 'long_text' type</li>
         <li>'acttype' and 'actId' are of type string. 'acttype' has a max length of 6(stripe/paypal) while 'actId' has a max length of 120 </li>
         
@@ -79,6 +80,7 @@
         <ul style="font-size:large;">
             <li>Note the donations(GET method) and the data type returned</li>
             <li>'phone_no' to the Users routes</li>
+            <li>'photos_links' now takes an array</li>
         </ul>
     </div>
     <script src="{{url_for('static', filename='js/files.js')}}"></script>
