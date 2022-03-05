@@ -4,7 +4,7 @@ from setup.api import bp
 from setup import db
 from setup.api.errors import bad_request, error_response
 from setup.api.auth import token_auth
-from setup.api.tokens import save_file
+from setup.api.tokens import save_file, delete_file
 
 @bp.route('/user/<int:id>', methods=['GET'])
 @token_auth.login_required
@@ -193,6 +193,20 @@ def image_upload():
     response = jsonify({'filepath': filepath})
     response.status_code = 201
     return response
+
+@bp.route('/image_delete', methods=['DELETE'])
+@token_auth.login_required
+def delete_image():
+    if not token_auth.current_user().is_admin:
+        return error_response(401, "Only an admin is allowed to delete images")
+    data = request.get_json() or {}
+    filepath = data['filepath']
+    filename = delete_file(filepath)
+    if filename == "File doesn't exist": 
+        file = filepath.split('/')[2] # after static/images
+        return error_response(404, f"File {file} does not exist")
+    return jsonify({'deleted_file': filename})
+
 
 
     

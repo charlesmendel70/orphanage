@@ -46,3 +46,13 @@ def save_file(file_data):
     f.save(file_path)
     output = 'static/images/' + filename
     return output
+
+def delete_file(filepath):
+    filename = filepath.split('/')[2] # after static/images
+    target = current_app.config['UPLOAD_FOLDER']
+    file_path = os.path.join(target, filename)
+    # If file doesn't exists,return an error
+    if not os.path.exists(file_path):
+        return "File doesn't exist"
+    os.remove(file_path)
+    return filename

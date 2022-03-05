@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+    <!--<input type="file" id="file_upload" />
+    <button id="submit_file">Upload</button>-->
 
     <h2>This APIs routes are as follows--(Note that all routes are prefixed with '/api')</h2>
     <h4>Currently, the user part of the api is protected and needs auth while the messages routes can be freely accessed</h4>
@@ -65,6 +67,11 @@
         'recipient_orphanage': (string)
     }</p>
 
+    <h3>Image details</h3>
+    <p>'/image_upload'(POST method) is for image uploads</p>
+    <p>'/image_delete'(DELETE method) is for image deletion. It returns a message in the format {'deleted_file': filename}</p>
+    <p><strong>Body takes 'filepath' which is a string</strong></p>
+    <p style="color: red;">It requires the token of an admin user to delete images</p>
 
     <h2>Further notes</h2>
     <div>
@@ -78,9 +85,8 @@
     <div>
         Added 
         <ul style="font-size:large;">
-            <li>Note the donations(GET method) and the data type returned</li>
-            <li>'phone_no' to the Users routes</li>
             <li>'photos_links' now takes an array</li>
+            <li>'/image_delete'(DELETE method) for delting images</li>
         </ul>
     </div>
     <script src="{{url_for('static', filename='js/files.js')}}"></script>
