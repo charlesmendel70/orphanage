@@ -57,7 +57,7 @@
     <h3>Donation details</h3>
     <p>'/donations'(POST method) => for adding successful donations</p>
     <p><strong>Body takes 'username','amount' & 'orphanage_name'(All required)</strong></p>
-    <p style="color: red;">It requires the token of the user who made a donation.Therefore, there are no anonymous donations</p>
+    <p style="color: red;">For anonymous donations, use the username 'Anonymous'</p>
     <p>'amount' is a number that should be rounded to 2 decimal places</p>
     <p>'/orphanage_donations/{id}'(GET method) to get an orphanage's donations. It returns the donations with donation time</p>
     <p style="color: red;">The donations are returned in the format {
@@ -85,8 +85,8 @@
     <div>
         Added 
         <ul style="font-size:large;">
-            <li>'photos_links' now takes an array</li>
             <li>'/image_delete'(DELETE method) for delting images</li>
+            <li>'/donations'(POST method) no longer requires a token. For anonymous donations, use the username 'Anonymous'</li>
         </ul>
     </div>
     <script src="{{url_for('static', filename='js/files.js')}}"></script>
