@@ -3,3 +3,4 @@ app.db
 microblog.log*
 __pycache__
 .env
+.idea
