@@ -160,7 +160,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
             'bank_info': self.bank_info,
             'actId': self.actId,
             'acttype': self.acttype,
-            'coontry': self.country,
+            'country': self.country,
             '_links': {
                 'self': url_for('api.get_orphanage', id=self.id),
             }
