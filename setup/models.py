@@ -137,6 +137,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
     bank_info = db.Column(db.Text)
     actId = db.Column(db.String(120))
     acttype = db.Column(db.String(6))
+    country = db.Column(db.Text)
     donations = db.relationship('Donation', backref='recipient', lazy='dynamic')
 
     def __repr__(self):
@@ -159,6 +160,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
             'bank_info': self.bank_info,
             'actId': self.actId,
             'acttype': self.acttype,
+            'coontry': self.country,
             '_links': {
                 'self': url_for('api.get_orphanage', id=self.id),
             }
@@ -166,7 +168,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
         return data
 
     def from_dict(self, data):
-        columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links', 'story', 'money_uses', 'photos_links','bank_info','actId','acttype']
+        columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links', 'story', 'money_uses', 'photos_links','bank_info','actId','acttype','country']
         for field in columns:
             if field in data:
                 setattr(self, field, data[field])

@@ -78,7 +78,7 @@ def get_orphanages():
 @token_auth.login_required
 def create_orphanage():
     data = request.get_json() or {}
-    columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links', 'story', 'money_uses', 'photos_links','bank_info','actId','acttype']
+    columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links', 'story', 'money_uses', 'photos_links','bank_info','actId','acttype','country']
     for field in columns:
         if field not in data:
             return bad_request('Must include all required fields')
