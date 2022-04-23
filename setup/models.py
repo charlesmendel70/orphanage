@@ -137,11 +137,10 @@ class Orphanage(db.Model, PaginatedAPIMixin):
     bank_info = db.Column(db.Text)
     actId = db.Column(db.String(120))
     acttype = db.Column(db.String(6))
-    country = db.Column(db.String)
-    organization_donations = db.Column(db.Text)
-    monthly_donation = db.Column(db.String)
-    registration_certificate = db.Column(db.String)
-    blog_link = db.Column(db.Sting)
+    country = db.Column(db.String(90))
+    monthly_donation = db.Column(db.String(90))
+    registration_certificate = db.Column(db.String(250))
+    blog_link = db.Column(db.String(250))
     donations = db.relationship('Donation', backref='recipient', lazy='dynamic')
 
     def __repr__(self):
