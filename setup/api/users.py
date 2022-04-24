@@ -79,7 +79,7 @@ def get_orphanages():
 def create_orphanage():
     data = request.get_json() or {}
     columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links',
-               'story', 'money_uses', 'photos_links', 'bank_info', 'actId', 'acttype', 'country', 'organization_donations',
+               'story', 'money_uses', 'photos_links', 'bank_info', 'actId', 'acttype', 'country', 'good_work',
                'monthly_donation', 'registration_certificate', 'blog_link']
     for field in columns:
         if field not in data:

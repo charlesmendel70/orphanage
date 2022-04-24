@@ -30,7 +30,8 @@
     <h3>Orphanage details</h3>
     <p>'/orphanages' (GET Method) => for getting all orphanages' details</p>
     <p>'/orphanages' (POST Method) => for creating an orphanage <br>
-    <strong>Body takes 'name', 'email', 'students', 'phone_no', 'location', 'activities','paypal_info','social_media_links', 'story', 'money_uses', 'photos_links','bank_info','acttype' and 'actId'(All required)</strong><br>
+    <strong>Body takes 'name', 'email', 'students', 'phone_no', 'location', 'activities','paypal_info','social_media_links', 'story', 'money_uses', 'photos_links','bank_info','acttype','actId', 'country', 'good_work',
+        'monthly_donation', 'registration_certificate', 'blog_link'(All required)</strong><br>
     <ul style="color: red;">
         <li>'name' and 'email' are strings</li>
         <li>'students' should be of 'number type' while 'phone_no' is a string of max length 20</li>
@@ -39,7 +40,9 @@
         <li> 'photos_links' should be an array</li>
         <li>'story','money_uses' & 'bank_info' are also of 'long_text' type</li>
         <li>'acttype' and 'actId' are of type string. 'acttype' has a max length of 6(stripe/paypal) while 'actId' has a max length of 120 </li>
-        
+        <li>'country' and 'monthly_donation' takes strings of max. length 90</li>
+        <li>'good_work' is of 'long_text type'</li>
+        <li>'registration_certificate' and 'blog_link' are strings of max length 250</li>
     </ul>
     </p>
     <p>'/orphanage/{id}' (GET method) => for getting an orphanage's details</p>
@@ -85,8 +88,7 @@
     <div>
         Added 
         <ul style="font-size:large;">
-            <li>'/image_delete'(DELETE method) for delting images</li>
-            <li>'/donations'(POST method) no longer requires a token. For anonymous donations, use the username 'Anonymous'</li>
+            <li>'country','monthly_donation', 'good_work', 'registration_certificate' and 'blog_link' fields have been added </li>
         </ul>
     </div>
     <script src="{{url_for('static', filename='js/files.js')}}"></script>

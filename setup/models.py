@@ -139,6 +139,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
     actId = db.Column(db.String(120))
     acttype = db.Column(db.String(6))
     country = db.Column(db.String(90))
+    good_work = db.Column(db.Text)
     monthly_donation = db.Column(db.String(90))
     registration_certificate = db.Column(db.String(250))
     blog_link = db.Column(db.String(250))
@@ -165,7 +166,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
             'actId': self.actId,
             'acttype': self.acttype,
             'country': self.country,
-            'organization_donations': self.organization_donations,
+            'good_work': self.good_work,
             'monthly_donation': self.monthly_donation,
             'registration_certificate': self.registration_certificate,
             'blog_link': self.blog_link,
@@ -177,7 +178,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
 
     def from_dict(self, data):
         columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links',
-                   'story', 'money_uses', 'photos_links','bank_info','actId','acttype','country', 'organization_donations',
+                   'story', 'money_uses', 'photos_links','bank_info','actId','acttype','country','good_work'
                    'monthly_donation', 'registration_certificate', 'blog_link']
         for field in columns:
             if field in data:
