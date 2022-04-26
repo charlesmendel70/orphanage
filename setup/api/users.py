@@ -194,7 +194,7 @@ def image_upload():
     response.status_code = 201
     return response
 
-@bp.route('/image_delete', methods=['DELETE'])
+@bp.route('/image_delete', methods=['POST'])
 @token_auth.login_required
 def delete_image():
     if not token_auth.current_user().is_admin:
