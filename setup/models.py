@@ -178,7 +178,7 @@ class Orphanage(db.Model, PaginatedAPIMixin):
 
     def from_dict(self, data):
         columns = ['name', 'email', 'students', 'phone_no', 'location', 'activities', 'paypal_info', 'social_media_links',
-                   'story', 'money_uses', 'photos_links','bank_info','actId','acttype','country','good_work'
+                   'story', 'money_uses', 'photos_links','bank_info','actId','acttype','country','good_work',
                    'monthly_donation', 'registration_certificate', 'blog_link']
         for field in columns:
             if field in data:
